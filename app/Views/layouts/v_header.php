@@ -12,6 +12,10 @@
     <link rel="stylesheet" href="<?= base_url() ?>/Backend/plugins/fontawesome-free/css/all.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="<?= base_url() ?>/Backend/dist/css/adminlte.min.css">
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="<?= base_url() ?>/Backend/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+    <!-- Toastr -->
+    <link rel="stylesheet" href="<?= base_url() ?>/Backend/plugins/toastr/toastr.min.css">
     <!-- favicon link -->
     <link rel="icon" href="demo_icon.gif" type="image/gif" sizes="16x16">
 </head>

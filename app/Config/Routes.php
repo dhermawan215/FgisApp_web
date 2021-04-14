@@ -31,16 +31,34 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
+$routes->get('/', 'Home::index', ['as' => 'home']);
+
+//cu44 routing setting
+$routes->get('/cu44', 'Cu44::index', ['as' => 'cu44']);
+$routes->get('/cu44/create', 'Cu44::create');
+$routes->get('/cu44/preparation', 'Cu44::preparation');
+$routes->delete('/cu44/(:num)', 'Cu44::delete/$1');
+$routes->get('/admin/product/edit/(:any)', 'Product::edit/$1');
+
+
+
+// categoris
+$routes->get('/categories/ahmcureguler', 'Ahmcureg::index',  ['as' => 'ahmcureg']);
+$routes->get('/categories/ahmcuspo', 'Ahmcuspo::index', ['as' => 'ahmcuspo']);
+$routes->get('/categories/hti', 'Hti::index', ['as' => 'hti']);
+$routes->get('/categories/adptw', 'Adptw::index', ['as' => 'adptw']);
+$routes->get('/categories/export', 'Export::index', ['as' => 'export']);
+$routes->get('/categories/kawasakicdi', 'Kawasakicdi::index', ['as' => 'kmicdi']);
 
 //produk routes
-$routes->get('/admin/product', 'Product::index');
+$routes->get('/admin/product', 'Product::index', ['as' => 'product']);
 $routes->get('/admin/product/create', 'Product::create');
-$routes->get('/admin/product/edit/(:segment)', 'Product::edit/$1');
+$routes->get('/admin/product/edit/(:any)', 'Product::edit/$1');
+$routes->delete('/admin/product/(:num)', 'Product::delete/$1');
 
 //member routes
 $routes->get('/admin/member', 'Member::index');
-$routes->get('/admin/member/edit/(:segment)', 'Member::edit/$1');
+$routes->get('/admin/member/edit/(:any)', 'Member::edit/$1');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

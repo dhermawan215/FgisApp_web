@@ -47,7 +47,8 @@
 
                             </div>
                             <div class="card-body p-0">
-                                <form action="" method="post" class="mx-3 py-2">
+                                <form action="" method="POST" class="mx-3 py-2">
+                                    <?= csrf_field() ?>
                                     <div class="form-group col-lg-12">
                                         <label for="nik">NIK</label>
                                         <input type="text" name="" id="nik" class="form-control" placeholder="Masukan Nik" aria-describedby="nik">

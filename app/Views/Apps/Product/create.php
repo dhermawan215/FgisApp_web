@@ -26,8 +26,8 @@ use Config\Validation;
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="<?= base_url() ?>">Home</a></li>
-                            <li class="breadcrumb-item"><a href="<?= base_url('product') ?>">Produk</a></li>
+                            <li class="breadcrumb-item"><a href="<?= route_to('home') ?>">Home</a></li>
+                            <li class="breadcrumb-item"><a href="<?= route_to('product') ?>">Produk</a></li>
                             <li class="breadcrumb-item active">Tambah Produk</li>
                         </ol>
                     </div>
@@ -52,36 +52,56 @@ use Config\Validation;
                             </div>
                             <div class="card-body p-0">
                                 <form action="/product/save" method="POST" class="mx-3 py-2">
+                                    <?= csrf_field() ?>
                                     <div class="form-group col-lg-12">
-                                        <label for="produk_name">Product Name</label>
-                                        <input type="text" name="produk_name" id="produk_name" class="form-control <?= ($validation->hasError('produk_name')) ? 'is-invalid' : ''; ?>" value="<?= old('produk_name') ?>" placeholder="Masukan Product Name">
+
+                                        <label for="product_name">Product Name</label>
+                                        <input type="text" name="product_name" id="product_name" class="form-control <?= ($validation->hasError('product_name')) ? 'is-invalid' : ''; ?>" value="<?= old('product_name') ?>" placeholder="Masukan Product Name">
                                         <div class="invalid-feedback mb-1">
-                                            <?= $validation->getError('produk_name')  ?>
+                                            <?= $validation->getError('product_name')  ?>
                                         </div>
+
                                         <label for="part_number">Part Number</label>
                                         <input type="text" name="part_number" id="part_number" class="form-control <?= ($validation->hasError('part_number')) ? 'is-invalid' : ''; ?>" value="<?= old('part_number') ?>" placeholder="Masukan Part Number">
                                         <div class="invalid-feedback mb-1">
                                             <?= $validation->getError('part_number')  ?>
                                         </div>
+
                                         <label for="part_name">Part Name</label>
                                         <input type="text" name="part_name" id="part_name" class="form-control  <?= ($validation->hasError('part_name')) ? 'is-invalid' : ''; ?>" value="<?= old('part_name') ?>" placeholder="Masukan Part Name">
                                         <div class="invalid-feedback mb-1">
-                                            <?= $validation->getError('Part-Name')  ?>
+                                            <?= $validation->getError('part_name')  ?>
                                         </div>
+
                                         <label for="PartName">Jenis</label>
-                                        <select class="form-control <?= ($validation->hasError('jenis')) ? 'is-invalid' : ''; ?>" name="jenis">
-                                            <option value="">-Silahkan Pilih-</option>
-                                            <option value="idf">IDF/ID</option>
+                                        <select class="custom-select <?= ($validation->hasError('jenis')) ? 'is-invalid' : ''; ?>" name="jenis">
+                                            <option selected value="">-Silahkan Pilih-</option>
+                                            <option value="IDF">IDF/ID</option>
                                             <option value="export">export</option>
                                             <option value="spo">SPO</option>
                                         </select>
 
+                                        <label for="Category">Kategori Barang</label>
+                                        <select class="custom-select <?= ($validation->hasError('category')) ? 'is-invalid' : ''; ?>" name="category">
+                                            <option selected value="">-Silahkan Pilih-</option>
+                                            <?php foreach ($Kategori as $key => $category) : ?>
+                                                <option value="<?= $category['id_category'] ?>"><?= $category['category_name'] ?></option>
+                                            <?php endforeach ?>
+                                        </select>
 
+                                        <label for="customers">Customers</label>
+                                        <select class="custom-select <?= ($validation->hasError('customers')) ? 'is-invalid' : ''; ?>" name="customers">
+                                            <option selected value="">-Silahkan Pilih-</option>
+                                            <?php foreach ($Customers as $key => $customer) : ?>
+                                                <option value="<?= $customer['id_customers'] ?>"><?= $customer['customers_name'] ?></option>
+                                            <?php endforeach ?>
+                                        </select>
                                     </div>
                                     <div class="mb-2 py-2 mx-2">
 
                                         <button type="submit" class="btn btn-primary text-center">Simpan</button>
                                         <button type="reset" class="btn btn-danger text-center ml-1">Reset</button>
+                                        <a href="<?= route_to('product') ?>" class="btn btn-outline-info text-dark ml-1">&laquo; Back</a>
                                     </div>
 
                                 </form>

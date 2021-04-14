@@ -22,8 +22,8 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="<?= base_url() ?>">Home</a></li>
-                            <li class="breadcrumb-item"><a href="<?= base_url('product') ?>">Produk</a></li>
+                            <li class="breadcrumb-item"><a href="<?= route_to('home') ?>">Home</a></li>
+                            <li class="breadcrumb-item"><a href="<?= route_to('product') ?>">Produk</a></li>
                             <li class="breadcrumb-item active">Edit Produk</li>
                         </ol>
                     </div>
@@ -47,20 +47,51 @@
 
                             </div>
                             <div class="card-body p-0">
-                                <form action="" method="post" class="mx-3 py-2">
+                                <form action="/product/update/<?= $editProduct['product_id'] ?>" method="POST" class="mx-3 py-2">
+                                    <?= csrf_field() ?>
                                     <div class="form-group col-lg-12">
-                                        <label for="ProductName">Product Name</label>
-                                        <input type="text" name="" id="ProductName" class="form-control" placeholder="Masukan Product Name" aria-describedby="ProductName">
-                                        <label for="PartNumber">Part Number</label>
-                                        <input type="text" name="" id="PartNumber" class="form-control" placeholder="Masukan Part Number" aria-describedby="PartNumber">
-                                        <label for="PartName">Part Name</label>
-                                        <input type="text" name="" id="PartName" class="form-control" placeholder="Masukan Part Name" aria-describedby="PartName">
+                                        <input type="hidden" name="id_product" value="<?= $editProduct['product_id'] ?>">
 
+                                        <label for="ProductName">Product Name</label>
+                                        <input type="text" name="product_name" id="ProductName" class="form-control <?= ($validation->hasError('product_name')) ? 'is-invalid' : ''; ?>" value="<?= (old('product_name')) ? old('product_name') : $editProduct['product_name'] ?>" placeholder="Masukan Product Name" aria-describedby="ProductName">
+                                        <div class="invalid-feedback mb-1">
+                                            <?= $validation->getError('product_name')  ?>
+                                        </div>
+
+                                        <label for="PartNumber">Part Number</label>
+                                        <input type="text" name="part_number" id="PartNumber" class="form-control <?= ($validation->hasError('part_number')) ? 'is-invalid' : ''; ?>" value="<?= (old('part_number')) ? old('part_number') : $editProduct['part_number'] ?>" placeholder="Masukan Part Number" aria-describedby="PartNumber">
+                                        <div class="invalid-feedback mb-1">
+                                            <?= $validation->getError('part_number')  ?>
+                                        </div>
+
+                                        <label for="PartName">Part Name</label>
+                                        <input type="text" name="part_name" id="PartName" class="form-control <?= ($validation->hasError('part_name')) ? 'is-invalid' : ''; ?>" value="<?= (old('part_name')) ? old('part_name') : $editProduct['part_name'] ?>" placeholder="Masukan Part Name" aria-describedby="PartName">
+                                        <div class="invalid-feedback mb-1">
+                                            <?= $validation->getError('part_number')  ?>
+                                        </div>
+                                        <label for="jenis">Jenis</label>
+                                        <input class="form-control" name="jenis" type="text" value="<?= $editProduct['jenis'] ?>" readonly>
+
+                                        <label for="Category">Kategori Barang</label>
+                                        <select class="custom-select <?= ($validation->hasError('category')) ? 'is-invalid' : ''; ?>" name="category">
+                                            <option selected value="<?= (old('category')) ? old('category') : $editProduct['category_id'] ?>"><?= $editProduct['category_name'] ?></option>
+                                            <?php foreach ($Kategori as $key => $category) : ?>
+                                                <option value="<?= $category['id_category'] ?>"><?= $category['category_name'] ?></option>
+                                            <?php endforeach ?>
+                                        </select>
+                                        <label for="customers">Customers</label>
+                                        <select class="custom-select <?= ($validation->hasError('customers')) ? 'is-invalid' : ''; ?>" name="customers">
+                                            <option selected value="<?= (old('customers')) ? old('customers') : $editProduct['customers_id'] ?>"><?= $editProduct['customers_name'] ?></option>
+                                            <?php foreach ($Customers as $key => $customer) : ?>
+                                                <option value="<?= $customer['id_customers'] ?>"><?= $customer['customers_name'] ?></option>
+                                            <?php endforeach ?>
+                                        </select>
                                     </div>
                                     <div class="mb-2 py-2 mx-2">
 
                                         <button type="submit" class="btn btn-primary text-center">Simpan</button>
                                         <button type="reset" class="btn btn-danger text-center ml-1">Reset</button>
+                                        <a href="<?= route_to('product') ?>" class="btn btn-outline-info text-dark ml-1">&laquo; Back</a>
                                     </div>
 
                                 </form>

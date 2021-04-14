@@ -1,8 +1,8 @@
 <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
-        <b>Version</b> 3.1.0-rc
+        <b>Version</b> 1.1.0 Full Version
     </div>
-    <strong>Copyright &copy; <?= date('Y') ?> <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; <?= date('Y') ?> <a href="https://adminlte.io">Exposure Tech</a>.</strong> All rights reserved.
 </footer>
 
 <!-- Control Sidebar -->
