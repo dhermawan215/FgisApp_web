@@ -14,6 +14,8 @@ class Product extends BaseController
 		$this->ProdukModel = new ProdukModel();
 		$this->CategoryModel = new CategoryModel();
 		$this->CustomersModel = new CustomersModel();
+		$this->config    = new \Config\Encryption();      // load the configuration for the encryption service
+		$this->encrypter = \Config\Services::encrypter($this->config); // start the encryption service
 		session();
 	}
 	public function index()
@@ -27,7 +29,8 @@ class Product extends BaseController
 			'subtitle' => 'Halaman Produk',
 			'getData' =>  $this->ProdukModel->getProduct()->paginate(20, 'product'),
 			'pager' => $this->ProdukModel->getProduct()->pager,
-			'page' => $currentPage
+			'page' => $currentPage,
+			'encrypter' => \Config\Services::encrypter($this->config)
 		];
 		return view('Apps/Product/v_product', $data);
 	}
@@ -85,17 +88,19 @@ class Product extends BaseController
 			'customers_id' => $this->request->getPost('customers')
 		]);
 		session()->setFlashdata('berhasil', 'Data Berhasil di Simpan!');
-		return redirect()->to(base_url('admin/product'));
+		return redirect()->to(route_to('product'));
 	}
 
 	public function edit($id)
 	{
+		$encrypter = \Config\Services::encrypter($this->config);
+		$decrypted_data = $encrypter->decrypt(hex2bin($id));
 
 		$data = [
 			'title' => 'Edit Produk - Fgis Apps',
 			'subtitle' => 'Halaman Edit Produk',
 			"validation" => \Config\Services::validation(),
-			'editProduct' => $this->ProdukModel->getProduct($id),
+			'editProduct' => $this->ProdukModel->getProduct($decrypted_data),
 			"Kategori" => $this->CategoryModel->findAll(),
 			"Customers" => $this->CustomersModel->findAll()
 		];
@@ -139,13 +144,13 @@ class Product extends BaseController
 			'customers_id' => $this->request->getPost('customers')
 		]);
 		session()->setFlashdata('berhasil', 'Data Berhasil di Perbaharui!');
-		return redirect()->to(base_url('admin/product'));
+		return redirect()->to(route_to('product'));
 	}
 
 	public function delete($id)
 	{
 		$this->ProdukModel->delete($id);
 		session()->setFlashdata('berhasil', 'Data Berhasil di Hapus!');
-		return redirect()->to(base_url('admin/product'));
+		return redirect()->to(route_to('product'));
 	}
 }

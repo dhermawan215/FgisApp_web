@@ -38,8 +38,12 @@ $routes->get('/cu44', 'Cu44::index', ['as' => 'cu44']);
 $routes->get('/cu44/create', 'Cu44::create');
 $routes->get('/cu44/preparation', 'Cu44::preparation');
 $routes->delete('/cu44/(:num)', 'Cu44::delete/$1');
-$routes->get('/admin/product/edit/(:any)', 'Product::edit/$1');
+$routes->get('/cu44/edit/(:any)', 'Cu44::edit/$1');
+$routes->delete('/cu44/(:num)', 'Cu44::delete/$1');
 
+//Login & Register
+$routes->get('/login', 'Auth::index', ['as' => 'login']);
+$routes->get('/register', 'Auth::register', ['as' => 'register']);
 
 
 // categoris
@@ -52,7 +56,7 @@ $routes->get('/categories/kawasakicdi', 'Kawasakicdi::index', ['as' => 'kmicdi']
 
 //produk routes
 $routes->get('/admin/product', 'Product::index', ['as' => 'product']);
-$routes->get('/admin/product/create', 'Product::create');
+$routes->get('/admin/product/create', 'Product::create', ['as' => 'productInsert']);
 $routes->get('/admin/product/edit/(:any)', 'Product::edit/$1');
 $routes->delete('/admin/product/(:num)', 'Product::delete/$1');
 

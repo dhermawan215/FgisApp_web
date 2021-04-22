@@ -2,7 +2,7 @@
 <aside class="main-sidebar sidebar-dark-success elevation-4">
     <!-- Brand Logo -->
     <a href="<?= route_to('home') ?>" class="brand-link elevation-4 text-center">
-        <i class="fab fa-buromobelexperte"></i>
+        <img src="<?= base_url() ?>/img/icon.svg" alt="icon_fgisapp" height="25px">
         <span class="brand-text font-weight-light font-weight-bold">Fgis Apps</span>
     </a>
 
@@ -14,7 +14,7 @@
                 <img src="<?= base_url() ?>/Backend/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Alexander Pierce</a>
+                <a href="#" class="d-block"></a>
             </div>
         </div>
 
@@ -195,7 +195,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?= base_url('admin/member') ?>" class="nav-link">
+                            <a href="<?= site_url('admin/member') ?>" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Member</p>
                             </a>
@@ -236,6 +236,13 @@
                         <i class="nav-icon far fa-clock"></i>
                         <p> Jam:
                             <?= date('H:i') ?>
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/auth/logout" class="nav-link">
+                        <i class="nav-icon fas fa-sign-out-alt"></i>
+                        <p> Log Out
                         </p>
                     </a>
                 </li>

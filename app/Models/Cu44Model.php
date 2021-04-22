@@ -41,4 +41,17 @@ class Cu44Model extends Model
 		$dataDate = $this->table('cu44')->where("date_transaction BETWEEN" . "'" . $firstDate . "'" . " AND " . "'" . $endDate . "'")->get()->getResultArray();
 		return $dataDate;
 	}
+
+	public function getDataId($id = false)
+	{
+		if ($id === false) {
+			$dataid = $this->Cu44Model->allDataDesc();
+			return $dataid;
+		} else {
+			$db = $this->table('cu44')
+				->where('cu44.id_44', $id)
+				->get()->getRowArray();
+			return $db;
+		}
+	}
 }

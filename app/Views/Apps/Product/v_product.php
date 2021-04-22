@@ -55,7 +55,7 @@
                                 <h3 class="card-title text-bold">Tabel Produk</h3>
 
                                 <div class="card-tools">
-                                    <a href="<?= base_url('/admin/product/create') ?>" class="btn btn-sm btn-primary float-right text-white"><i class="fas fa-plus fa-sm text-white-50"></i> Tambah Data</a>
+                                    <a href="<?= route_to('productInsert') ?>" class="btn btn-sm btn-primary float-right text-white"><i class="fas fa-plus fa-sm text-white-50"></i> Tambah Data</a>
                                 </div>
 
                             </div>
@@ -89,8 +89,8 @@
                                                 <td><?= $value['customers_name'] ?></td>
 
                                                 <td>
-
-                                                    <a href="/admin/product/edit/<?= $value['product_id'] ?>"><i class="fa fa-edit"></i></a>
+                                                    <?php $id = bin2hex($encrypter->encrypt($value['product_id'])); ?>
+                                                    <a href="/admin/product/edit/<?= $id ?>"><i class="fa fa-edit"></i></a>
                                                     <form action="/admin/product/<?= $value['product_id'] ?>" method="POST" class="d-inline">
                                                         <input type="hidden" name="_method" value="DELETE">
                                                         <button type="submit" class="btn" onclick="return confirm('Apakah anda yakin ingin menghapus?')">

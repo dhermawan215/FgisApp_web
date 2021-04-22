@@ -17,7 +17,7 @@
     <!-- Toastr -->
     <link rel="stylesheet" href="<?= base_url() ?>/Backend/plugins/toastr/toastr.min.css">
     <!-- favicon link -->
-    <link rel="icon" href="demo_icon.gif" type="image/gif" sizes="16x16">
+    <link rel="icon" href="<?= base_url() ?>/myfavicon.ico" type="ico" sizes="16x16">
 </head>
 
 <body class="hold-transition sidebar-mini layout-navbar-fixed">

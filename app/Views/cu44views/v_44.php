@@ -26,7 +26,7 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="<?= base_url() ?>">Home</a></li>
+                            <li class="breadcrumb-item"><a href="<?= site_url() ?>">Home</a></li>
                             <li class="breadcrumb-item active">CU44</li>
                         </ol>
                     </div>
@@ -113,7 +113,6 @@
                                     </div>
                                     <input type="date" class="form-control" id="inlineFormInputGroupUsername2" name="endDate" placeholder="Username">
                                 </div>
-
                                 <button type="submit" title="Cari" class="btn btn-primary ml-2 mb-2 mt-2"><i class="fas fa-search"></i></button>
                                 <a href="/cu44" title="Bersihkan Pencarian" class="ml-2 mb-2 mt-2 btn btn-outline-danger"><i class="fas fa-eraser"></i></a>
                             </form>
@@ -146,10 +145,7 @@
                         </div>
                     </div>
                 </div>
-
             </div>
-
-
 
             <div class="row">
                 <div class="col-md-12">
@@ -164,14 +160,14 @@
                             <table class="table table-responsive-sm">
                                 <thead>
                                     <tr>
-                                        <th style="width: 2px">#</th>
+                                        <th style="width: 2px">No</th>
                                         <th>Tanggal</th>
                                         <th>Qty</th>
                                         <th>Jenis</th>
                                         <th>Ket</th>
                                         <th>Di isi</th>
                                         <th>Di cek</th>
-                                        <td>Action</td>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -183,8 +179,8 @@
                                             <td><?= $value['quantity'] ?></td>
                                             <td><?= $value['input'] ?></td>
                                             <td><?= $value['remark'] ?></td>
-                                            <td><?= $value['fill_by'] ?></td>
-                                            <td><?= $value['checked_by'] ?></td>
+                                            <td><?= ucfirst($value['fill_by']) ?></td>
+                                            <td><?= ucfirst($value['checked_by'])  ?></td>
                                             <td>
                                                 <?php $id = bin2hex($encrypter->encrypt($value['id_44'])); ?>
                                                 <a href="/cu44/edit/<?= $id ?>"><i class="fa fa-edit"></i></a>
@@ -195,14 +191,14 @@
                                                     </button>
                                                 </form>
                                             </td>
-
                                         </tr>
+
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>
                             <hr>
-
                         </div>
+
                     </div>
                 </div>
             </div>
