@@ -33,7 +33,7 @@ class Auth extends BaseController
 		if (!$this->validate([
 			'email' => [
 				'rules' => 'required|valid_email|is_not_unique[users.email]',
-				'errors' => ['required' => '{field} harus di isi !', 'valid_email' => 'email yang di masukan harus email valid!', 'is_not_unique' => 'email belum terdaftar!']
+				'errors' => ['required' => '{field} harus di isi !', 'valid_email' => 'email yang di masukan harus email valid!', 'is_not_unique' => 'email belum terdaftar! silahkan daftar lebih dahulu']
 			],
 			'password' => [
 				'rules' => 'required',
@@ -48,7 +48,7 @@ class Auth extends BaseController
 		$row_db = $this->UserModel->get_data_login($email);
 
 		if ($row_db == NULL) {
-			session()->setFlashdata('berhasil', 'Maaf Email Yang Dimasukan Salah');
+			session()->setFlashdata('gagal', 'Maaf Email Yang Dimasukan Salah');
 			return redirect()->to(route_to('login'));
 		}
 		if (password_verify($password, $row_db['password'])) {
@@ -64,7 +64,7 @@ class Auth extends BaseController
 			session()->setFlashdata('berhasil', 'Login Berhasil');
 			return redirect()->to(route_to('home'));
 		}
-		session()->setFlashdata('berhasil', 'Maaf sandi Yang Dimasukan Salah');
+		session()->setFlashdata('gagal', 'Maaf sandi Yang Dimasukan Salah');
 		return redirect()->to(route_to('login'));
 	}
 
@@ -103,13 +103,13 @@ class Auth extends BaseController
 		])) {
 			return redirect()->to(route_to('register'))->withInput();
 		}
-
+		$level = "user";
 		$this->UserModel->save([
 
 			'name' => \htmlspecialchars($this->request->getPost('nama')),
 			'email' => \htmlspecialchars($this->request->getPost('email')),
 			'password' => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
-			'level' => $this->request->getPost('level')
+			'level' => $level,
 
 		]);
 		session()->setFlashdata('berhasil', 'akun telah terdaftar, silahkan login');

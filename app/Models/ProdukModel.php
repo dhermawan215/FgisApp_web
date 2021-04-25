@@ -30,10 +30,23 @@ class ProdukModel extends Model
 				->getRowArray();
 		}
 	}
-	public function getProduct44()
+	public function getProductRow($condition)
 	{
-		$condition = "CU-44";
+		// $condition = "CU-44";
 		$cu44 = $this->table('product')->where('product_name', $condition)->get()->getFirstRow();
 		return $cu44;
+	}
+
+	public function getAllProduct()
+	{
+		$dataAll = $this->table('product')->countAll();
+		return $dataAll;
+	}
+
+	public function dashboardData()
+	{
+		$getDataDashboard = $this->table('product')->select('product_name, part_number, part_name')->limit(6)->get()
+			->getResultArray();
+		return $getDataDashboard;
 	}
 }

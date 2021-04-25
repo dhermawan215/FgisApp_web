@@ -62,7 +62,7 @@
                                 <div class="info-box">
                                     <span class="info-box-icon bg-success"><i class="fas fa-tag text-white"></i></span>
                                     <div class="info-box-content">
-                                        <a href="" class="info-box-text text-bold text-decoration-none text-secondary ">CU-261S</a>
+                                        <a href="" class="info-box-text text-bold text-decoration-none text-secondary ">CU-21S</a>
                                     </div>
                                 </div>
                             </div>

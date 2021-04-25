@@ -86,12 +86,7 @@
                             <label class="form-check-label" for="exampleCheck1">Show Password</label>
                         </div>
                     </div>
-                    <div class="input-group mt-1 mb-3">
-                        <select name="level" id="" class="custom-select">
-                            <option selected value="user">User</option>
-                            <option value="admin">Admin</option>
-                        </select>
-                    </div>
+
                     <div class="row mb-2 mt-1">
 
                         <!-- /.col -->
@@ -116,6 +111,17 @@
     <script src="<?= base_url() ?>/Backend/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
     <script src="<?= base_url() ?>/Backend/dist/js/adminlte.min.js"></script>
+
+    <!-- auto close alert -->
+    <script>
+        $(document).ready(function() {
+            window.setTimeout(function() {
+                $(".alert").fadeTo(500, 0).slideUp(500, function() {
+                    $(this).remove();
+                });
+            }, 4000);
+        });
+    </script>
 
     <!-- view password -->
     <script>

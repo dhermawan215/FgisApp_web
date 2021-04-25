@@ -18,6 +18,8 @@
     <link rel="stylesheet" href="<?= base_url() ?>/Backend/plugins/toastr/toastr.min.css">
     <!-- favicon link -->
     <link rel="icon" href="<?= base_url() ?>/myfavicon.ico" type="ico" sizes="16x16">
+    <!-- boostrap icon -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
 </head>
 
 <body class="hold-transition sidebar-mini layout-navbar-fixed">

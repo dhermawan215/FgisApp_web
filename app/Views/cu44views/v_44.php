@@ -38,17 +38,7 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-6">
-                        <?php if (session()->getFlashdata('berhasil')) : ?>
-                            <div class="alert alert-success" role="alert">
-                                <?= session()->getFlashdata('berhasil') ?>
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-
-                        <?php endif ?>
-                    </div>
+                    <?= $this->include('layouts/v_alerts'); ?>
                 </div>
 
                 <div class="row">

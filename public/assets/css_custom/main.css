@@ -1,0 +1,47 @@
+@media (min-width: 992px) {
+  .login-container {
+    background: -webkit-gradient(linear, left top, right top, color-stop(67%, #4885e0), color-stop(40%, #ededee));
+    background: linear-gradient(90deg, #4885e0 67%, #ededee 40%);
+    height: 100vh;
+  }
+}
+
+@media (min-width: 400px) {
+  .login-container {
+    background-color: #369ec7;
+    height: 100vh;
+  }
+  .login-container .page-login .text-custom {
+    visibility: inherit;
+    position: relative;
+    text-align: unset;
+  }
+  .login-container .page-login .text-custom img {
+    height: 40px;
+  }
+}
+
+@media (min-width: 300px) {
+  .login-container {
+    background-color: #369ec7;
+    height: 100vh;
+  }
+  .login-container .page-login .text-custom {
+    visibility: inherit;
+    position: relative;
+  }
+  .login-container .page-login .text-custom img {
+    height: 45px;
+  }
+}
+
+.page-login {
+  height: 100vh;
+}
+
+.page-login .text-custom {
+  color: #fff;
+  text-align: center;
+  font-size: 30px;
+}
+/*# sourceMappingURL=main.css.map */

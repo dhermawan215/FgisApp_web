@@ -17,34 +17,33 @@
         <!-- Notifications Dropdown Menu -->
         <li class="nav-item dropdown">
 
-            <a class="nav-link" data-toggle="dropdown" href="#">
-                <i class="fas fa-user-circle"></i>
-
-                <span class="text-weight-300">Account</span>
+            <a class="nav-link text-primary" data-toggle="dropdown" href="#">
+                <i class="bi bi-person-circle"></i>
+                <span class="text-bold "><?= session()->nama ?></span>
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                 <span class="dropdown-item dropdown-header"></span>
                 <div class="dropdown-divider"></div>
                 <a href="#" class="dropdown-item">
-                    <i class="fas fa-envelope mr-2"></i>
+                    <i class="fas fa-user mr-2"></i>
+                    <span><?= session()->nama ?></span>
 
-                    <span class="float-right text-muted text-sm">3 mins</span>
                 </a>
                 <div class="dropdown-divider"></div>
                 <a href="#" class="dropdown-item">
-                    <i class="fas fa-users mr-2"></i>
+                    <i class="fas fa-at mr-2"></i>
+                    <span><?= session()->email ?></span>
 
-                    <span class="float-right text-muted text-sm">12 hours</span>
                 </a>
                 <div class="dropdown-divider"></div>
                 <a href="#" class="dropdown-item">
-                    <i class="fas fa-file mr-2"></i>
-
+                    <i class="fas fa-layer-group mr-2"></i>
+                    <span><?= session()->level ?></span>
                     <span class="float-right text-muted text-sm"></span>
                 </a>
                 <div class="dropdown-divider"></div>
 
-                <a href="/auth/logout" class="dropdown-item dropdown-footer"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                <a href="#" data-toggle="modal" data-target="#exampleModal" class="dropdown-item dropdown-footer"><i class="bi bi-box-arrow-in-left"></i> Logout</a>
             </div>
         </li>
 

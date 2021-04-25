@@ -6,6 +6,7 @@ use App\Controllers\BaseController;
 use App\Models\ProdukModel;
 use App\Models\CategoryModel;
 use App\Models\CustomersModel;
+use Config\Services;
 
 class Product extends BaseController
 {
@@ -17,12 +18,21 @@ class Product extends BaseController
 		$this->config    = new \Config\Encryption();      // load the configuration for the encryption service
 		$this->encrypter = \Config\Services::encrypter($this->config); // start the encryption service
 		session();
+		$this->session = Services::session();
 	}
 	public function index()
 	{
 		// $dataJoin = $this->ProdukModel->getProduct();
 		// // $dataOk = $dataJoin->paginate(3'product');
 		// dd($dataJoin);
+		if ($this->session->loginSucces == null) {
+			return redirect()->to(\base_url('login'));
+		}
+		if ($this->session->level != "admin") {
+			return redirect()->to(\base_url());
+		}
+
+
 		$currentPage = $this->request->getVar('page_product') ? $this->request->getVar('page_product') : 1;
 		$data = [
 			'title' => 'Product - Fgis Apps',
@@ -37,6 +47,12 @@ class Product extends BaseController
 
 	public function create()
 	{
+		if ($this->session->loginSucces == null) {
+			return redirect()->to(\base_url('login'));
+		}
+		if ($this->session->level != "admin") {
+			return redirect()->to(\base_url());
+		}
 		$data = [
 			'title' => 'Tambah Produk - Fgis Apps',
 			'subtitle' => 'Halaman Tambah Produk',
@@ -93,6 +109,13 @@ class Product extends BaseController
 
 	public function edit($id)
 	{
+		if ($this->session->loginSucces == null) {
+			return redirect()->to(\base_url('login'));
+		}
+		if ($this->session->level != "admin") {
+			return redirect()->to(\base_url());
+		}
+
 		$encrypter = \Config\Services::encrypter($this->config);
 		$decrypted_data = $encrypter->decrypt(hex2bin($id));
 

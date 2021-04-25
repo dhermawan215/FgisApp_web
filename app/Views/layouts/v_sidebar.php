@@ -9,14 +9,7 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <!-- Sidebar user (optional) -->
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div class="image">
-                <img src="<?= base_url() ?>/Backend/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-            </div>
-            <div class="info">
-                <a href="#" class="d-block"></a>
-            </div>
-        </div>
+
 
         <!-- SidebarSearch Form -->
 
@@ -178,59 +171,38 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-header">Admin Dashboard</li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-user-shield"></i>
-                        <p>
-                            Admin
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="<?= route_to('product') ?>" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Produk</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="<?= site_url('admin/member') ?>" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Member</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>User Setting</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-search"></i>
-                        <p>
-                            Search
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="../search/simple.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Simple Search</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="../search/enhanced.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Enhanced</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                <?php if (session()->level == "admin") : ?>
+                    <li class="nav-header">Admin Dashboard</li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-user-shield"></i>
+                            <p>
+                                Admin
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="<?= route_to('product') ?>" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Produk</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= site_url('admin/member') ?>" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Member</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>User Setting</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                <?php endif; ?>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon far fa-clock"></i>
@@ -239,9 +211,11 @@
                         </p>
                     </a>
                 </li>
+
                 <li class="nav-item">
-                    <a href="/auth/logout" class="nav-link">
-                        <i class="nav-icon fas fa-sign-out-alt"></i>
+                    <a href="#" data-toggle="modal" data-target="#exampleModal" class="nav-link">
+                        <i class="nav-icon bi bi-box-arrow-left"></i>
+
                         <p> Log Out
                         </p>
                     </a>

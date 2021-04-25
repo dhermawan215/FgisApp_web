@@ -1,0 +1,56 @@
+.login-container{
+    @media (min-width : 992px) {
+        background: linear-gradient(90deg, #4885e0 67%, #ededee 40%);
+        
+        height: 100vh;
+        
+    }
+    @media (min-width : 400px) {
+        background-color: #369ec7;
+        
+        height: 100vh;
+
+        .page-login{
+            .text-custom{
+              visibility: inherit;
+              position: relative;
+              text-align: unset;
+
+              img{
+                height: 40px;
+            }
+            }
+        }
+        
+        
+    }
+    @media (min-width : 300px) {
+        background-color: #369ec7;
+        
+        height: 100vh;
+
+        .page-login{
+            .text-custom{
+              visibility: inherit;
+              position: relative;
+
+              img{
+                height: 45px;
+            }
+            }
+        }
+        
+        
+    }
+}
+
+.page-login{
+    height: 100vh;      
+
+    .text-custom{
+        color: #fff;
+        text-align: center;
+        font-size: 30px;
+    }
+}
+

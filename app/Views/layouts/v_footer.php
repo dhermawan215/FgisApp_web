@@ -1,8 +1,37 @@
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Pemberitahuan Keluar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fas fa-times-circle text-danger"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/auth/logout" method="POST">
+                    <h5 class="text-center">Apakah Yakin Mau Keluar?</h5>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary"><i class="fab fa-telegram-plane"></i> Yes</button>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
 <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
-        <b>Version</b> 1.1.0 Full Version
+        <i class="bi bi-check-circle-fill"></i> All rights reserved<b>
     </div>
-    <strong>Copyright &copy; <?= date('Y') ?> <a href="https://adminlte.io">Exposure Tech</a>.</strong> All rights reserved.
+    <strong>Copyright</i> <?= date('Y') ?> Fgis Apps <i class="fas fa-heart text-danger"></i></strong> <span> dari Bekasi : Dicky Hermawan</span>
 </footer>
 
 <!-- Control Sidebar -->
@@ -17,11 +46,24 @@
 <script src="<?= base_url() ?>/Backend/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="<?= base_url() ?>/Backend/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- SweetAlert2 -->
+<script src="<?= base_url() ?>/Backend/plugins/sweetalert2/sweetalert2.min.js"></script>
 <!-- AdminLTE App -->
 <script src="<?= base_url() ?>/Backend/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?= base_url() ?>/Backend/dist/js/demo.js"></script>
 <!-- Code injected by live-server -->
+<!-- auto close alert -->
+<script>
+    $(document).ready(function() {
+        window.setTimeout(function() {
+            $(".alert").fadeTo(500, 0).slideUp(500, function() {
+                $(this).remove();
+            });
+        }, 4000);
+    });
+</script>
+
 <script type="text/javascript">
     // <![CDATA[  <-- For SVG support
     if ('WebSocket' in window) {

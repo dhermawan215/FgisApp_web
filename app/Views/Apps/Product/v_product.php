@@ -36,81 +36,72 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12">
-                        <?php if (session()->getFlashdata('berhasil')) : ?>
-                            <div class="alert alert-success" role="alert">
-                                <?= session()->getFlashdata('berhasil') ?>
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-
-                        <?php endif ?>
-                    </div>
+                    <?= $this->include('layouts/v_alerts'); ?>
                 </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-header bg-gradient-success">
-                                <h3 class="card-title text-bold">Tabel Produk</h3>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header bg-gradient-success">
+                            <h3 class="card-title text-bold">Tabel Produk</h3>
 
-                                <div class="card-tools">
-                                    <a href="<?= route_to('productInsert') ?>" class="btn btn-sm btn-primary float-right text-white"><i class="fas fa-plus fa-sm text-white-50"></i> Tambah Data</a>
-                                </div>
-
+                            <div class="card-tools">
+                                <a href="<?= route_to('productInsert') ?>" class="btn btn-sm btn-primary float-right text-white"><i class="fas fa-plus fa-sm text-white-50"></i> Tambah Data</a>
                             </div>
-                            <div class="card-body p-0">
-                                <table class="table table-responsive-sm">
-                                    <thead>
+
+                        </div>
+                        <div class="card-body p-0">
+                            <table class="table table-responsive-sm">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 2px">#</th>
+                                        <th>Produk Name</th>
+                                        <th>Part Number</th>
+                                        <th>Part Name</th>
+                                        <th>Jenis</th>
+                                        <th>Kategori</th>
+                                        <th>Customer</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <?php $i = 1 + (($page - 1) * 20); ?>
+                                    <?php foreach ($getData as $key => $value) : ?>
                                         <tr>
-                                            <th style="width: 2px">#</th>
-                                            <th>Produk Name</th>
-                                            <th>Part Number</th>
-                                            <th>Part Name</th>
-                                            <th>Jenis</th>
-                                            <th>Kategori</th>
-                                            <th>Customer</th>
-                                            <th>Action</th>
+                                            <td><?= $i++ ?></td>
+                                            <td><?= $value['product_name'] ?></td>
+                                            <td>
+                                                <?= $value['part_number'] ?>
+                                            </td>
+                                            <td><?= $value['part_name'] ?></td>
+                                            <td><?= $value['jenis'] ?></td>
+                                            <td><?= $value['category_name'] ?></td>
+                                            <td><?= $value['customers_name'] ?></td>
+
+                                            <td>
+                                                <?php $id = bin2hex($encrypter->encrypt($value['product_id'])); ?>
+                                                <a href="/admin/product/edit/<?= $id ?>"><i class="fa fa-edit"></i></a>
+                                                <form action="/admin/product/<?= $value['product_id'] ?>" method="POST" class="d-inline">
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                    <button type="submit" class="btn" onclick="return confirm('Apakah anda yakin ingin menghapus?')">
+                                                        <i class="fas fa-ban text-danger"></i>
+                                                    </button>
+                                                </form>
+                                            </td>
                                         </tr>
-                                    </thead>
-                                    <tbody>
-
-                                        <?php $i = 1 + (($page - 1) * 20); ?>
-                                        <?php foreach ($getData as $key => $value) : ?>
-                                            <tr>
-                                                <td><?= $i++ ?></td>
-                                                <td><?= $value['product_name'] ?></td>
-                                                <td>
-                                                    <?= $value['part_number'] ?>
-                                                </td>
-                                                <td><?= $value['part_name'] ?></td>
-                                                <td><?= $value['jenis'] ?></td>
-                                                <td><?= $value['category_name'] ?></td>
-                                                <td><?= $value['customers_name'] ?></td>
-
-                                                <td>
-                                                    <?php $id = bin2hex($encrypter->encrypt($value['product_id'])); ?>
-                                                    <a href="/admin/product/edit/<?= $id ?>"><i class="fa fa-edit"></i></a>
-                                                    <form action="/admin/product/<?= $value['product_id'] ?>" method="POST" class="d-inline">
-                                                        <input type="hidden" name="_method" value="DELETE">
-                                                        <button type="submit" class="btn" onclick="return confirm('Apakah anda yakin ingin menghapus?')">
-                                                            <i class="fas fa-ban text-danger"></i>
-                                                        </button>
-                                                    </form>
-                                                </td>
-                                            </tr>
-                                        <?php endforeach; ?>
-                                    </tbody>
-                                </table>
-                                <hr>
-                                <div class="card-tools">
-                                    <?= $pager->links('product', 'product_paginate'); ?>
-
-                                </div>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                            <hr>
+                            <div class="card-tools">
+                                <?= $pager->links('product', 'product_paginate'); ?>
 
                             </div>
+
                         </div>
                     </div>
+                </div>
         </section>
         <!-- /.content -->
     </div>

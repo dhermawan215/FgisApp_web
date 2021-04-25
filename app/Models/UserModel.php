@@ -23,4 +23,10 @@ class UserModel extends Model
 
 		return $loginData;
 	}
+
+	public function dataDashboard()
+	{
+		$dashboardData = $this->table('users')->select('name')->where('level', 'user')->limit(6)->get()->getResultArray();
+		return $dashboardData;
+	}
 }

@@ -76,7 +76,7 @@ use Config\Validation;
                                             <?= $validation->getError('remark')  ?>
                                         </div>
                                         <label for="fill_by">Di isi oleh</label>
-                                        <input type="text" name="fill_by" id="fill_by" class="form-control  <?= ($validation->hasError('fill_by')) ? 'is-invalid' : ''; ?>" value="<?= old('fill_by') ?>" placeholder="Di isi oleh">
+                                        <input type="text" name="fill_by" id="fill_by" class="form-control  <?= ($validation->hasError('fill_by')) ? 'is-invalid' : ''; ?>" value="<?= old('fill_by') ?: session()->nama  ?>" placeholder="Di isi oleh">
                                         <div class="invalid-feedback mb-1">
                                             <?= $validation->getError('fill_by')  ?>
                                         </div>
@@ -93,7 +93,7 @@ use Config\Validation;
 
                                         <button type="submit" class="btn btn-primary text-center">Simpan</button>
                                         <button type="reset" class="btn btn-danger text-center ml-1">Reset</button>
-                                        <a href="/admin/product" class="btn btn-ligth text-warning ml-1">&laquo; Back</a>
+                                        <a href="<?= route_to('cu44') ?>" class="btn btn-ligth text-warning ml-1">&laquo; Back</a>
                                     </div>
 
                                 </form>

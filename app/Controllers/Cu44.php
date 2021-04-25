@@ -6,9 +6,12 @@ use App\Controllers\BaseController;
 use App\Models\Cu44Model;
 use phpDocumentor\Reflection\Types\Float_;
 use App\Models\ProdukModel;
+use Config\Services;
 
 class Cu44 extends BaseController
 {
+	protected $session;
+
 	public function __construct()
 	{
 		$this->Cu44Model = new Cu44Model();
@@ -16,10 +19,16 @@ class Cu44 extends BaseController
 		$this->config    = new \Config\Encryption();      // load the configuration for the encryption service
 		$this->encrypter = \Config\Services::encrypter($this->config); // start the encryption service
 		session();
+		$this->session = Services::session();
 	}
 
 	public function index()
 	{
+		if ($this->session->loginSucces == null) {
+			return redirect()->to(\base_url('login'));
+		}
+		$condition = "CU-44";
+
 
 		$inData = $this->Cu44Model->getInData();
 		$outData = $this->Cu44Model->getOutData();
@@ -33,7 +42,7 @@ class Cu44 extends BaseController
 			'title' => 'Cu44 - Fgis Apps',
 			'subtitle' => 'Halaman Produk CU 44',
 			'stock' => $stock44,
-			'getProductNumber' => $this->ProdukModel->getProduct44(),
+			'getProductNumber' => $this->ProdukModel->getProductRow($condition),
 			'allData' => $allDataDesc,
 			'encrypter' => \Config\Services::encrypter($this->config)
 		];
@@ -151,6 +160,9 @@ class Cu44 extends BaseController
 
 	public function edit($id)
 	{
+		if ($this->session->loginSucces == null) {
+			return redirect()->to(\base_url('login'));
+		}
 		$encrypter = \Config\Services::encrypter($this->config);
 		$decrypted_data = $encrypter->decrypt(hex2bin($id));
 
@@ -204,14 +216,14 @@ class Cu44 extends BaseController
 			'fill_by' => $this->request->getPost('fill_by'),
 			'checked_by' => $this->request->getPost('checked_by'),
 		]);
-		session()->setFlashdata('berhasil', 'Data Berhasil di Perbarui!');
+		session()->setFlashdata('info', 'Data Berhasil di Perbarui!');
 		return redirect()->to(route_to('cu44'));
 	}
 
 	public function delete($id)
 	{
 		$this->Cu44Model->delete($id);
-		session()->setFlashdata('berhasil', 'Data Berhasil di Hapus!');
+		session()->setFlashdata('gagal', 'Data Berhasil di Hapus!');
 		return redirect()->to(route_to('cu44'));
 	}
 }
