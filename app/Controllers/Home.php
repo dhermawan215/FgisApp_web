@@ -25,7 +25,7 @@ class Home extends BaseController
 		if ($this->session->loginSucces == null) {
 			return redirect()->to(\base_url('login'));
 		}
-		// dd($this->ProdukModel->dashboardData());
+		// dd($this->ProdukModel->getCharData());
 
 		$data = [
 			'title' => 'Dashboard - Fgis Apps',
@@ -33,7 +33,8 @@ class Home extends BaseController
 			'produkTotal' => $this->ProdukModel->getAllProduct(),
 			'produkDashboard' => $this->ProdukModel->dashboardData(),
 			'user' => $this->UserModel->countAll(),
-			'users' => $this->UserModel->dataDashboard()
+			'users' => $this->UserModel->dataDashboard(),
+
 		];
 		return view('Apps/v_dashboard', $data);
 	}

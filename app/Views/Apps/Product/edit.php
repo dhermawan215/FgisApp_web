@@ -44,13 +44,14 @@
                         <div class="card">
                             <div class="card-header bg-success">
                                 <h3 class="card-title text-bold  text-white">Form Edit Produk</h3>
-
+                                <?php $id = bin2hex($encrypter->encrypt($editProduct['product_id'])) ?>
                             </div>
                             <div class="card-body p-0">
-                                <form action="/product/update/<?= $editProduct['product_id'] ?>" method="POST" class="mx-3 py-2">
+                                <form action="/product/update/<?= $id ?>" method="POST" class="mx-3 py-2">
                                     <?= csrf_field() ?>
                                     <div class="form-group col-lg-12">
-                                        <input type="hidden" name="id_product" value="<?= $editProduct['product_id'] ?>">
+
+                                        <input type="hidden" name="id_product" value="<?= $id ?>">
 
                                         <label for="ProductName">Product Name</label>
                                         <input type="text" name="product_name" id="ProductName" class="form-control <?= ($validation->hasError('product_name')) ? 'is-invalid' : ''; ?>" value="<?= (old('product_name')) ? old('product_name') : $editProduct['product_name'] ?>" placeholder="Masukan Product Name" aria-describedby="ProductName">
@@ -70,7 +71,12 @@
                                             <?= $validation->getError('part_number')  ?>
                                         </div>
                                         <label for="jenis">Jenis</label>
-                                        <input class="form-control" name="jenis" type="text" value="<?= $editProduct['jenis'] ?>" readonly>
+                                        <select class="custom-select <?= ($validation->hasError('jenis')) ? 'is-invalid' : ''; ?>" name="jenis">
+                                            <option selected value="<?= (old('jenis')) ? old('jenis') :  $editProduct['jenis'] ?> "><?= $editProduct['jenis'] ?></option>
+                                            <option value="IDF">IDF/ID</option>
+                                            <option value="export">export</option>
+                                            <option value="spo">SPO</option>
+                                        </select>
 
                                         <label for="Category">Kategori Barang</label>
                                         <select class="custom-select <?= ($validation->hasError('category')) ? 'is-invalid' : ''; ?>" name="category">
@@ -89,7 +95,7 @@
                                     </div>
                                     <div class="mb-2 py-2 mx-2">
 
-                                        <button type="submit" class="btn btn-primary text-center">Simpan</button>
+                                        <button type="submit" name="simpan" value="ok" class="btn btn-primary text-center">Simpan</button>
                                         <button type="reset" class="btn btn-danger text-center ml-1">Reset</button>
                                         <a href="<?= route_to('product') ?>" class="btn btn-outline-info text-dark ml-1">&laquo; Back</a>
                                     </div>

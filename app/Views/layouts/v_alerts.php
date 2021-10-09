@@ -17,8 +17,17 @@
 
     <?php endif ?>
     <?php if (session()->getFlashdata('info')) : ?>
-        <div class="alert alert-info" role="alert">
+        <div class="alert alert-info text-white" role="alert">
             <?= session()->getFlashdata('info') ?>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+    <?php endif ?>
+    <?php if (session()->getFlashdata('warning')) : ?>
+        <div class="alert alert-warning text-white" role="alert">
+            <?= session()->getFlashdata('warning') ?>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>

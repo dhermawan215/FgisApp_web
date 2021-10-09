@@ -27,7 +27,7 @@
                 <div class="section-left image-left col-12 col-md-6">
                     <p class="text-bold text-custom">
                         <img src="<?= base_url() ?>/img/icon.svg" alt="icon_fgisapp" class="my-1" height="50px">
-                        Selamat Datang <br> Sistem Inventory Finished good warehouse</p>
+                        Selamat Datang <br> Sistem Inventory Finished Good Warehouse</p>
 
                 </div>
                 <div class="section-right col-12 col-md-6">
@@ -80,9 +80,7 @@
                                 <p class="mb-1">
 
                                 </p>
-                                <p class="mb-0">
-                                    <a href="<?= route_to('register') ?>" class="text-center">Register a new membership</a>
-                                </p>
+
                             </div>
                             <!-- /.card-body -->
                         </div>

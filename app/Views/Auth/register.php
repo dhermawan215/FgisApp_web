@@ -97,8 +97,7 @@
                     </div>
                 </form>
 
-                <span class="text-center mt-1">Sudah Terdaftar? Silahkan </span>
-                <a href="<?= route_to('login') ?>" class="text-center text-bold">Login</a>
+
             </div>
             <!-- /.form-box -->
         </div><!-- /.card -->

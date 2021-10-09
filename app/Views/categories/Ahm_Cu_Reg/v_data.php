@@ -95,7 +95,7 @@
                                 <div class="info-box">
                                     <span class="info-box-icon bg-success"><i class="fas fa-tag text-white"></i></span>
                                     <div class="info-box-content">
-                                        <a href="" class="info-box-text text-bold text-decoration-none text-secondary ">CU-44A</a>
+                                        <a href="<?= route_to('cu44A') ?>" class="info-box-text text-bold text-decoration-none text-secondary ">CU-44A</a>
                                     </div>
                                 </div>
                             </div>

@@ -29,6 +29,7 @@ class Product extends BaseController
 			return redirect()->to(\base_url('login'));
 		}
 		if ($this->session->level != "admin") {
+			session()->setFlashdata('gagal', 'Maaf Akses Terbatas');
 			return redirect()->to(\base_url());
 		}
 
@@ -65,7 +66,7 @@ class Product extends BaseController
 
 	public function save()
 	{
-		// dd($this->request->getPost());
+
 		if (!$this->validate([
 			'product_name' => [
 				'rules' => 'required',
@@ -99,7 +100,7 @@ class Product extends BaseController
 			'product_name' => strtoupper($this->request->getPost('product_name')),
 			'part_number' => strtoupper($this->request->getPost('part_number')),
 			'part_name' => strtoupper($this->request->getPost('part_name')),
-			'jenis' => $this->request->getPost('jenis'),
+			'jenis' => strtoupper($this->request->getPost('jenis')),
 			'category_id' => $this->request->getPost('category'),
 			'customers_id' => $this->request->getPost('customers')
 		]);
@@ -125,13 +126,16 @@ class Product extends BaseController
 			"validation" => \Config\Services::validation(),
 			'editProduct' => $this->ProdukModel->getProduct($decrypted_data),
 			"Kategori" => $this->CategoryModel->findAll(),
-			"Customers" => $this->CustomersModel->findAll()
+			"Customers" => $this->CustomersModel->findAll(),
+			'encrypter' => \Config\Services::encrypter($this->config)
 		];
 		return view('Apps/Product/edit', $data);
 	}
 
 	public function update($id)
 	{
+		$encrypter = \Config\Services::encrypter($this->config);
+
 		if (!$this->validate([
 			'product_name' => [
 				'rules' => 'required',
@@ -152,28 +156,33 @@ class Product extends BaseController
 			'customers' => [
 				'rules' => 'required',
 				'errors' => ['required' => '{field} harus di isi !']
+			],
+			'jenis' => [
+				'rules' => 'required',
+				'errors' => ['required' => '{field} harus di isi !']
 			]
 		])) {
 			return redirect()->to('/admin/product/edit/' . $id)->withInput();
+		} else {
+			$id2 = $encrypter->decrypt(hex2bin($id));
+			$this->ProdukModel->save([
+				'product_id' => $id2,
+				'product_name' => strtoupper($this->request->getPost('product_name')),
+				'part_number' => strtoupper($this->request->getPost('part_number')),
+				'part_name' => strtoupper($this->request->getPost('part_name')),
+				'jenis' => strtoupper($this->request->getPost('jenis')),
+				'category_id' => $this->request->getPost('category'),
+				'customers_id' => $this->request->getPost('customers')
+			]);
+			session()->setFlashdata('info', 'Data Berhasil di Perbaharui!');
+			return redirect()->to(route_to('product'));
 		}
-
-		$this->ProdukModel->save([
-			'product_id' => $id,
-			'product_name' => strtoupper($this->request->getPost('product_name')),
-			'part_number' => strtoupper($this->request->getPost('part_number')),
-			'part_name' => strtoupper($this->request->getPost('part_name')),
-			'jenis' => $this->request->getPost('jenis'),
-			'category_id' => $this->request->getPost('category'),
-			'customers_id' => $this->request->getPost('customers')
-		]);
-		session()->setFlashdata('berhasil', 'Data Berhasil di Perbaharui!');
-		return redirect()->to(route_to('product'));
 	}
 
 	public function delete($id)
 	{
 		$this->ProdukModel->delete($id);
-		session()->setFlashdata('berhasil', 'Data Berhasil di Hapus!');
+		session()->setFlashdata('gagal', 'Data Berhasil di Hapus!');
 		return redirect()->to(route_to('product'));
 	}
 }

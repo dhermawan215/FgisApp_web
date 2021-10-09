@@ -28,10 +28,10 @@
 </div>
 
 <footer class="main-footer">
-    <div class="float-right d-none d-sm-block">
-        <i class="bi bi-check-circle-fill"></i> All rights reserved<b>
+    <div class="float-right d-none d-sm-block text-info">
+        <i class="bi bi-check-circle-fill "></i> All rights reserved<b>
     </div>
-    <strong>Copyright</i> <?= date('Y') ?> Fgis Apps <i class="fas fa-heart text-danger"></i></strong> <span> dari Bekasi : Dicky Hermawan</span>
+    <strong><i class="fas fa-copyright"></i> <?= date('Y') ?> Fgis Apps <i class="fas fa-heart text-danger"></i></strong> <span> Expsoure Tech</span>
 </footer>
 
 <!-- Control Sidebar -->
@@ -46,6 +46,9 @@
 <script src="<?= base_url() ?>/Backend/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="<?= base_url() ?>/Backend/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- chart js -->
+<script src="<?= base_url() ?>/Backend/plugins/chart.js/Chart.min.js"></script>
+<script src="<?= base_url() ?>/assets/js/chart.min.js"></script>
 <!-- SweetAlert2 -->
 <script src="<?= base_url() ?>/Backend/plugins/sweetalert2/sweetalert2.min.js"></script>
 <!-- AdminLTE App -->
@@ -100,6 +103,7 @@
     }
     // ]]>
 </script>
+
 
 </body>
 

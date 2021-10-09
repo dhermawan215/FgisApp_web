@@ -20,6 +20,8 @@
     <link rel="icon" href="<?= base_url() ?>/myfavicon.ico" type="ico" sizes="16x16">
     <!-- boostrap icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+
+    <script src="<?= base_url() ?>/Backend/plugins/chart.js/Chart.min.js"></script>
 </head>
 
 <body class="hold-transition sidebar-mini layout-navbar-fixed">

@@ -22,7 +22,7 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i> Home</a></li>
                             <li class="breadcrumb-item active">Dashboard Fgis Apps</li>
                         </ol>
                     </div>
@@ -33,6 +33,9 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
+                <div class="row">
+                    <?= $this->include('layouts/v_alerts'); ?>
+                </div>
                 <div class="row">
                     <div class="col-12">
                         <!-- Default box -->
@@ -57,30 +60,8 @@
                                 <!-- /.col -->
                             <?php endforeach; ?>
                             <!-- /.col -->
-                            <div class="col-12 col-sm-6 col-md-2">
-                                <div class="info-box mb-3">
-                                    <span class="info-box-icon bg-success elevation-1"><i class="fas fa-box-open"></i></span>
 
-                                    <div class="info-box-content">
-                                        <span class="info-box-text">Total Produk</span>
-                                        <span class="info-box-number"><?= $produkTotal ?></span>
-                                    </div>
-                                    <!-- /.info-box-content -->
-                                </div>
-                                <!-- /.info-box -->
-                            </div>
-                            <div class="col-12 col-sm-6 col-md-2">
-                                <div class="info-box mb-3">
-                                    <span class="info-box-icon bg-warning elevation-1"><i class="bi bi-file-person"></i></span>
 
-                                    <div class="info-box-content">
-                                        <span class="info-box-text">Members</span>
-                                        <span class="info-box-number"><?= $user ?></span>
-                                    </div>
-                                    <!-- /.info-box-content -->
-                                </div>
-                                <!-- /.info-box -->
-                            </div>
                             <!-- /.col -->
                         </div>
                         <!-- /.row -->
@@ -100,9 +81,9 @@
 
                                     <div class="col-md-12">
                                         <!-- USERS LIST -->
-                                        <div class="card">
+                                        <div class="card card-info">
                                             <div class="card-header">
-                                                <h3 class="card-title">Members</h3>
+                                                <h3 class="card-title">Members <span class="badge badge-success"><i class="fas fa-user"></i></span></h3>
                                                 <div class="card-tools">
                                                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                                         <i class="fas fa-minus"></i>
@@ -115,7 +96,7 @@
                                                 <ul class="users-list clearfix">
                                                     <?php foreach ($users as $key => $row) : ?>
                                                         <li>
-                                                            <i class="far fa-user-circle"></i>
+                                                            <i class="far fa-user-circle text-info"></i>
                                                             <a class="users-list-name"><?= $row['name'] ?></a>
 
                                                         </li>
@@ -134,7 +115,7 @@
                                 <!-- /.row -->
 
                                 <!-- TABLE: LATEST ORDERS -->
-                                <div class="card">
+                                <div class="card card-info">
                                     <div class="card-header border-transparent">
                                         <h3 class="card-title">Top <span class="badge badge-success">6 </span> Product</h3>
 
@@ -171,9 +152,11 @@
                                         <!-- /.table-responsive -->
                                     </div>
                                     <!-- /.card-body -->
-                                    <div class="card-footer clearfix">
-                                        <a href="<?= route_to('product') ?>" class="btn btn-sm btn-info float-right">View All Product</a>
-                                    </div>
+                                    <?php if (session()->level == "admin") : ?>
+                                        <div class="card-footer clearfix">
+                                            <a href="<?= route_to('product') ?>" class="btn btn-sm btn-info float-right">View All Product</a>
+                                        </div>
+                                    <?php endif; ?>
                                     <!-- /.card-footer -->
                                 </div>
                                 <!-- /.card -->
@@ -183,41 +166,21 @@
                             <div class="col-md-4">
                                 <!-- Info Boxes Style 2 -->
                                 <div class="info-box mb-3 bg-warning">
-                                    <span class="info-box-icon"><i class="fas fa-tag"></i></span>
+                                    <span class="info-box-icon"><i class="bi bi-file-person text-white"></i></span>
 
-                                    <div class="info-box-content">
-                                        <span class="info-box-text">Inventory</span>
-                                        <span class="info-box-number">5,200</span>
+                                    <div class="info-box-content text-white">
+                                        <span class="info-box-text">Members</span>
+                                        <span class="info-box-number"><?= $user ?></span>
                                     </div>
                                     <!-- /.info-box-content -->
                                 </div>
                                 <!-- /.info-box -->
                                 <div class="info-box mb-3 bg-success">
-                                    <span class="info-box-icon"><i class="far fa-heart"></i></span>
+                                    <span class="info-box-icon"><i class="fas fa-box"></i></span>
 
                                     <div class="info-box-content">
-                                        <span class="info-box-text">Mentions</span>
-                                        <span class="info-box-number">92,050</span>
-                                    </div>
-                                    <!-- /.info-box-content -->
-                                </div>
-                                <!-- /.info-box -->
-                                <div class="info-box mb-3 bg-danger">
-                                    <span class="info-box-icon"><i class="fas fa-cloud-download-alt"></i></span>
-
-                                    <div class="info-box-content">
-                                        <span class="info-box-text">Downloads</span>
-                                        <span class="info-box-number">114,381</span>
-                                    </div>
-                                    <!-- /.info-box-content -->
-                                </div>
-                                <!-- /.info-box -->
-                                <div class="info-box mb-3 bg-info">
-                                    <span class="info-box-icon"><i class="far fa-comment"></i></span>
-
-                                    <div class="info-box-content">
-                                        <span class="info-box-text">Direct Messages</span>
-                                        <span class="info-box-number">163,921</span>
+                                        <span class="info-box-text">Total Produk</span>
+                                        <span class="info-box-number"><?= $produkTotal ?></span>
                                     </div>
                                     <!-- /.info-box-content -->
                                 </div>
@@ -232,6 +195,7 @@
                             </div>
                             <!-- /.col -->
                         </div>
+
                         <!-- /.row -->
                         <!-- /.card -->
                     </div>
@@ -239,6 +203,11 @@
             </div>
         </section>
         <!-- /.content -->
+
+        <!-- section chart -->
+
+
+        <!-- end section chart -->
     </div>
     <!-- /.content-wrapper -->
 

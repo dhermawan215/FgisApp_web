@@ -4,7 +4,7 @@ namespace App\Models;
 
 use CodeIgniter\Database\MySQLi\Result;
 use CodeIgniter\Model;
-use phpDocumentor\Reflection\Types\Integer;
+
 
 class Cu44Model extends Model
 {
@@ -40,6 +40,41 @@ class Cu44Model extends Model
 	{
 		$dataDate = $this->table('cu44')->where("date_transaction BETWEEN" . "'" . $firstDate . "'" . " AND " . "'" . $endDate . "'")->get()->getResultArray();
 		return $dataDate;
+	}
+	public function StokMAsukIn($dateMounth, $dateYear)
+	{
+		$db      = \Config\Database::connect();
+		$query = $db->query("SELECT date_transaction, SUM(quantity)
+		FROM cu44 WHERE input='IN' AND MONTH(date_transaction) ='$dateMounth' AND YEAR(date_transaction)='$dateYear' ");
+		$dataIb = $query->getRowArray();
+
+		return $dataIb;
+	}
+	public function StokMAsukOut($dateMounth, $dateYear)
+	{
+		$db      = \Config\Database::connect();
+		$query = $db->query("SELECT date_transaction, SUM(quantity)
+		FROM cu44 WHERE input='OUT' AND MONTH(date_transaction) ='$dateMounth' AND YEAR(date_transaction)='$dateYear' ");
+		$dataIb = $query->getRowArray();
+
+		return $dataIb;
+	}
+
+	public function stockBulan($dateMounth, $dateYear)
+	{
+
+		// $db      = \Config\Database::connect();
+		// $query = $db->query("SELECT date_transaction, quantity, remark
+		// FROM cu44 WHERE MONTH(date_transaction) ='$dateMounth' AND YEAR(date_transaction)='$dateYear' ORDER BY 'ASC' ");
+		// $dataIb2 = $query->getResultArray();
+
+		$array = ['MONTH(date_transaction)' => $dateMounth, 'YEAR(date_transaction)' => $dateYear];
+		$dB1 = $this->table('cu44')->select('date_transaction, quantity, remark')->where($array)
+			->orderBy("date_transaction", "ASC")
+			->get()->getResultArray();
+
+
+		return $dB1;
 	}
 
 	public function getDataId($id = false)

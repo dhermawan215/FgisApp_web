@@ -48,14 +48,14 @@ use Config\Validation;
                         <div class="card">
                             <div class="card-header bg-success">
                                 <h3 class="card-title text-bold  text-white">Form <?= $breadcumb ?></h3>
-                                <?php $id = bin2hex($encrypter->encrypt($editStock['id_44'])) ?>
+                                <?php $id = bin2hex($encrypter->encrypt($editStock['id_44a'])) ?>
                             </div>
 
                             <div class="card-body p-0">
-                                <form action="/cu44/update/<?= $id ?>" method="POST" class="mx-3 py-2">
+                                <form action="/cu44A/update/<?= $id ?>" method="POST" class="mx-3 py-2">
                                     <?= csrf_field() ?>
                                     <div class="form-group col-lg-12">
-                                        <input type="hidden" name="id_44" value="<?= $id ?>">
+                                        <input type="hidden" name="id_44a" value="<?= $id ?>">
                                         <label for="date_transaction">Tanggal</label>
                                         <input type="date" name="date_transaction" id="date_transaction" class="form-control <?= ($validation->hasError('date_transaction')) ? 'is-invalid' : ''; ?>" value="<?= (old('date_transaction')) ? old('date_transaction') :  $editStock['date_transaction'] ?>">
                                         <div class="invalid-feedback mb-1">
@@ -95,7 +95,7 @@ use Config\Validation;
 
                                         <button type="submit" class="btn btn-primary text-center">Simpan</button>
                                         <button type="reset" class="btn btn-danger text-center ml-1">Reset</button>
-                                        <a href="<?= route_to('cu44') ?>" class="btn btn-outline-info text-dark ml-1">&laquo; Back</a>
+                                        <a href="<?= route_to('cu44A') ?>" class="btn btn-outline-info text-dark ml-1">&laquo; Back</a>
                                     </div>
 
                                 </form>

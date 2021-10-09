@@ -33,7 +33,7 @@ class Auth extends BaseController
 		if (!$this->validate([
 			'email' => [
 				'rules' => 'required|valid_email|is_not_unique[users.email]',
-				'errors' => ['required' => '{field} harus di isi !', 'valid_email' => 'email yang di masukan harus email valid!', 'is_not_unique' => 'email belum terdaftar! silahkan daftar lebih dahulu']
+				'errors' => ['required' => '{field} harus di isi !', 'valid_email' => 'email yang di masukan harus email valid!', 'is_not_unique' => 'email belum terdaftar! silahkan hubungi admin']
 			],
 			'password' => [
 				'rules' => 'required',
@@ -70,9 +70,19 @@ class Auth extends BaseController
 
 	public function register()
 	{
-		if ($this->session->loginSucces == \true) {
-			return redirect()->to(\base_url());
+		// dd($this->session->loginSucces);
+
+
+		if ($this->session->loginSucces == null) {
+			session()->setFlashdata('gagal', 'Anda Harus Login');
+			return redirect()->to(route_to('login'));
+		} else if ($this->session->loginSucces == true) {
+			if ($this->session->level != "admin") {
+				session()->setFlashdata('gagal', 'Maaf Hak Akses Terbatas');
+				return redirect()->to(\route_to('home'));
+			}
 		}
+
 		$data = [
 			'title' => 'Register - Fgis Apps',
 			'subtitle' => 'Halaman Registrasi Pengguna Baru',
@@ -112,8 +122,8 @@ class Auth extends BaseController
 			'level' => $level,
 
 		]);
-		session()->setFlashdata('berhasil', 'akun telah terdaftar, silahkan login');
-		return redirect()->to(route_to('login'));
+		session()->setFlashdata('berhasil', 'akun telah terdaftar');
+		return redirect()->to(route_to('home'));
 	}
 
 	public function logout()

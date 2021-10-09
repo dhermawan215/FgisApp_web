@@ -200,17 +200,21 @@
                                     <p>User Setting</p>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Kategori Produk</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Customers</p>
+                                </a>
+                            </li>
                         </ul>
                     </li>
                 <?php endif; ?>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon far fa-clock"></i>
-                        <p> Jam:
-                            <?= date('H:i') ?>
-                        </p>
-                    </a>
-                </li>
 
                 <li class="nav-item">
                     <a href="#" data-toggle="modal" data-target="#exampleModal" class="nav-link">

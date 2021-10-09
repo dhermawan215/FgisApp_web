@@ -74,7 +74,7 @@
                         <div class="info-box">
                             <span class="info-box-icon bg-secondary"><i class="fas fa-pen"></i></span>
                             <div class="info-box-content">
-                                <a href="/cu44/preparation" class="info-box-number">Input Stock Persiapan</a>
+                                <a href="/cu44A/preparation" class="info-box-number">Input Stock Persiapan</a>
                             </div>
                         </div>
                     </div>
@@ -87,24 +87,24 @@
                             <span>Pencarian Data Stok by Date</span>
                         </div>
                         <div class="card-body px-3">
-                            <form action="/cu44/SearchDate" method="POST" class="mx-3 py-2 form-inline">
+                            <form action="/cu44A/SearchDate" method="POST" class="mx-3 py-2 form-inline">
                                 <?= csrf_field() ?>
                                 <div class="input-group mb-1 mr-sm-1">
                                     <div class="input-group-prepend">
                                         <label class="mr-1" for="">Tanggal Awal : </label>
                                         <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
                                     </div>
-                                    <input type="date" class="form-control" id="inlineFormInputGroupUsername2" name="firstDate">
+                                    <input type="date" class="form-control" id="inlineFormInputGroupUsername2" name="firstDate" placeholder="Username">
                                 </div>
                                 <div class="input-group mb-1 mr-sm-1">
                                     <div class="input-group-prepend">
                                         <label class="mr-1" for="">Tanggal Akhir : </label>
                                         <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
                                     </div>
-                                    <input type="date" class="form-control" id="inlineFormInputGroupUsername3" name="endDate">
+                                    <input type="date" class="form-control" id="inlineFormInputGroupUsername2" name="endDate" placeholder="Username">
                                 </div>
                                 <button type="submit" title="Cari" class="btn btn-primary ml-2 mb-2 mt-2"><i class="fas fa-search"></i></button>
-                                <a href="/cu44" title="Bersihkan Pencarian" class="ml-2 mb-2 mt-2 btn btn-outline-danger"><i class="fas fa-eraser"></i></a>
+                                <a href="/cu44A" title="Bersihkan Pencarian" class="ml-2 mb-2 mt-2 btn btn-outline-danger"><i class="fas fa-eraser"></i></a>
                             </form>
                         </div>
                     </div>
@@ -115,7 +115,7 @@
                             <span>Pencarian Data Stok by Limit</span>
                         </div>
                         <div class="card-body px-3">
-                            <form action="/cu44/SearchLimit" method="POST" class="mx-3 py-2 form-inline">
+                            <form action="/cu44A/SearchLimit" method="POST" class="mx-3 py-2 form-inline">
                                 <?= csrf_field() ?>
                                 <div class="input-group mb-1 mr-sm-1">
                                     <div class="input-group-prepend">
@@ -130,7 +130,7 @@
                                     </div>
                                 </div>
                                 <button type="submit" title="Cari" class="btn btn-primary ml-2 mb-2 mt-2"><i class="fas fa-search"></i></button>
-                                <a href="/cu44" title="Bersihkan" class="ml-2 mb-2 mt-2 btn btn-outline-danger"><i class="fas fa-eraser"></i></a>
+                                <a href="/cu44A" title="Bersihkan" class="ml-2 mb-2 mt-2 btn btn-outline-danger"><i class="fas fa-eraser"></i></a>
                             </form>
                         </div>
                     </div>
@@ -144,7 +144,7 @@
                                 <span>Cetak Laporan Stok</span>
                             </div>
                             <div class="card-body">
-                                <form action="/cu44/generate" method="POST" class="form-inline mx-1 py-1">
+                                <form action="/cu44a/generate" method="POST" class="form-inline mx-1 py-1">
                                     <?= csrf_field() ?>
                                     <div class="input-group mb-1 mr-sm-1">
                                         <div class="input-group-prepend">
@@ -197,9 +197,9 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header bg-gradient-success">
-                            <h3 class="card-title text-bold">Tabel Stock Card CU-44</h3>
+                            <h3 class="card-title text-bold">Tabel Stock Card CU-44A</h3>
                             <div class="card-tools">
-                                <a href="/cu44/create" class="btn btn-sm btn-outline-primary float-right text-white"><i class="fas fa-plus fa-sm text-white-50"></i> Input Assy Entry</a>
+                                <a href="/cu44A/create" class="btn btn-sm btn-outline-primary float-right text-white"><i class="fas fa-plus fa-sm text-white-50"></i> Input Assy Entry</a>
                             </div>
                         </div>
                         <div class="card-body p-0">
@@ -222,22 +222,20 @@
                                         <tr>
                                             <td><?= $no++ ?></td>
                                             <td><?= $value['date_transaction'] ?></td>
-                                            <td><?= number_format($value['quantity'])  ?></td>
+                                            <td><?= $value['quantity'] ?></td>
                                             <td><?= $value['input'] ?></td>
                                             <td><?= $value['remark'] ?></td>
                                             <td><?= ucfirst($value['fill_by']) ?></td>
                                             <td><?= ucfirst($value['checked_by'])  ?></td>
                                             <td>
-                                                <?php $id = bin2hex($encrypter->encrypt($value['id_44'])); ?>
-                                                <a href="/cu44/edit/<?= $id ?>"><i class="fa fa-edit"></i></a>
-                                                <?php if (session()->level == "admin") : ?>
-                                                    <form action="/cu44/<?= $value['id_44'] ?>" method="POST" class="d-inline">
-                                                        <input type="hidden" name="_method" value="DELETE">
-                                                        <button type="submit" class="btn" onclick="return confirm('Apakah anda yakin ingin menghapus?')">
-                                                            <i class="fas fa-ban text-danger"></i>
-                                                        </button>
-                                                    </form>
-                                                <?php endif; ?>
+                                                <?php $id = bin2hex($encrypter->encrypt($value['id_44a'])); ?>
+                                                <a href="/cu44A/edit/<?= $id ?>"><i class="fa fa-edit"></i></a>
+                                                <form action="/cu44A/<?= $value['id_44a'] ?>" method="POST" class="d-inline">
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                    <button type="submit" class="btn" onclick="return confirm('Apakah anda yakin ingin menghapus?')">
+                                                        <i class="fas fa-ban text-danger"></i>
+                                                    </button>
+                                                </form>
                                             </td>
                                         </tr>
 

@@ -27,7 +27,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="<?= site_url() ?>">Home</a></li>
-                            <li class="breadcrumb-item active">CU44</li>
+                            <li class="breadcrumb-item active">CI787SPO</li>
                         </ol>
                     </div>
                 </div>
@@ -87,7 +87,7 @@
                             <span>Pencarian Data Stok by Date</span>
                         </div>
                         <div class="card-body px-3">
-                            <form action="/cu44/SearchDate" method="POST" class="mx-3 py-2 form-inline">
+                            <form action="/ci787spo/SearchDate" method="POST" class="mx-3 py-2 form-inline">
                                 <?= csrf_field() ?>
                                 <div class="input-group mb-1 mr-sm-1">
                                     <div class="input-group-prepend">
@@ -115,7 +115,7 @@
                             <span>Pencarian Data Stok by Limit</span>
                         </div>
                         <div class="card-body px-3">
-                            <form action="/cu44/SearchLimit" method="POST" class="mx-3 py-2 form-inline">
+                            <form action="/ci787spo/SearchLimit" method="POST" class="mx-3 py-2 form-inline">
                                 <?= csrf_field() ?>
                                 <div class="input-group mb-1 mr-sm-1">
                                     <div class="input-group-prepend">
@@ -144,7 +144,7 @@
                                 <span>Cetak Laporan Stok</span>
                             </div>
                             <div class="card-body">
-                                <form action="/cu44/generate" method="POST" class="form-inline mx-1 py-1">
+                                <form action="/ci787spo/generate" method="POST" class="form-inline mx-1 py-1">
                                     <?= csrf_field() ?>
                                     <div class="input-group mb-1 mr-sm-1">
                                         <div class="input-group-prepend">
@@ -197,9 +197,9 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header bg-gradient-success">
-                            <h3 class="card-title text-bold">Tabel Stock Card CU-44</h3>
+                            <h3 class="card-title text-bold">Tabel Stock Card CI787SPO</h3>
                             <div class="card-tools">
-                                <a href="/cu44/create" class="btn btn-sm btn-outline-primary float-right text-white"><i class="fas fa-plus fa-sm text-white-50"></i> Input Assy Entry</a>
+                                <a href="/ci787spo/create" class="btn btn-sm btn-outline-primary float-right text-white"><i class="fas fa-plus fa-sm text-white-50"></i> Input Assy Entry</a>
                             </div>
                         </div>
                         <div class="card-body p-0">
@@ -217,21 +217,23 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php $no = 1 ?>
+
+                                    <?php $no = 1; ?>
                                     <?php foreach ($allData as $key => $value) : ?>
                                         <tr>
-                                            <td><?= $no++ ?></td>
+                                            <td><?= $no++; ?></td>
                                             <td><?= $value['date_transaction'] ?></td>
-                                            <td><?= number_format($value['quantity'])  ?></td>
+                                            <td><?= number_format($value['quantity']) ?></td>
                                             <td><?= $value['input'] ?></td>
                                             <td><?= $value['remark'] ?></td>
                                             <td><?= ucfirst($value['fill_by']) ?></td>
-                                            <td><?= ucfirst($value['checked_by'])  ?></td>
+                                            <td><?= ucfirst($value['checked_by']) ?></td>
                                             <td>
-                                                <?php $id = bin2hex($encrypter->encrypt($value['id_44'])); ?>
-                                                <a href="/cu44/edit/<?= $id ?>"><i class="fa fa-edit"></i></a>
+                                                <?php $id = bin2hex($encrypter->encrypt($value['id_stock'])); ?>
+                                                <a href="/ci787spo/edit/<?php $id ?>"><i class="fa fa-edit"></i></a>
                                                 <?php if (session()->level == "admin") : ?>
-                                                    <form action="/cu44/<?= $value['id_44'] ?>" method="POST" class="d-inline">
+                                                    <form action="/ci787spo/<?php $value['id_stock']
+                                                                            ?>" method="POST" class="d-inline">
                                                         <input type="hidden" name="_method" value="DELETE">
                                                         <button type="submit" class="btn" onclick="return confirm('Apakah anda yakin ingin menghapus?')">
                                                             <i class="fas fa-ban text-danger"></i>

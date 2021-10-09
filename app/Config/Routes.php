@@ -41,6 +41,14 @@ $routes->delete('/cu44/(:num)', 'Cu44::delete/$1');
 $routes->get('/cu44/edit/(:any)', 'Cu44::edit/$1');
 $routes->delete('/cu44/(:num)', 'Cu44::delete/$1');
 
+//cu44A routing setting
+$routes->get('/cu44A', 'Cu44a::index', ['as' => 'cu44A']);
+$routes->get('/cu44A/create', 'Cu44a::create');
+$routes->get('/cu44A/preparation', 'Cu44a::preparation');
+$routes->delete('/cu44A/(:num)', 'Cu44a::delete/$1');
+$routes->get('/cu44A/edit/(:any)', 'Cu44a::edit/$1');
+
+
 //Login & Register
 $routes->get('/login', 'Auth::index', ['as' => 'login']);
 $routes->get('/register', 'Auth::register', ['as' => 'register']);
@@ -63,6 +71,12 @@ $routes->delete('/admin/product/(:num)', 'Product::delete/$1');
 //member routes
 $routes->get('/admin/member', 'Member::index');
 $routes->get('/admin/member/edit/(:any)', 'Member::edit/$1');
+
+//  kawasaki routes
+
+//ci787spo
+$routes->get('/ci787spo', 'Ci787spo::index', ['as' => 'Ci787spo']);
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
