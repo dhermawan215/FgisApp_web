@@ -9,13 +9,13 @@
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="<?= base_url() ?>/Backend/plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="/Backend/plugins/fontawesome-free/css/all.min.css">
     <!-- icheck bootstrap -->
-    <link rel="stylesheet" href="<?= base_url() ?>/Backend/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <link rel="stylesheet" href="/Backend/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="<?= base_url() ?>/Backend/dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="/Backend/assetsx/css/adminlte.min.css">
 
-    <link rel="stylesheet" href="<?= base_url() ?>/assets/css_custom/main.css">
+    <link rel="stylesheet" href="/assets/css_custom/main.css">
     <link rel="icon" href="<?= base_url() ?>/myfavicon.ico" type="ico" sizes="16x16">
 </head>
 
@@ -27,7 +27,8 @@
                 <div class="section-left image-left col-12 col-md-6">
                     <p class="text-bold text-custom">
                         <img src="<?= base_url() ?>/img/icon.svg" alt="icon_fgisapp" class="my-1" height="50px">
-                        Selamat Datang <br> Sistem Inventory Finished Good Warehouse</p>
+                        Selamat Datang <br> Sistem Inventory Finished Good Warehouse
+                    </p>
 
                 </div>
                 <div class="section-right col-12 col-md-6">
@@ -99,7 +100,7 @@
     <!-- Bootstrap 4 -->
     <script src="<?= base_url() ?>/Backend/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
-    <script src="<?= base_url() ?>/Backend/dist/js/adminlte.min.js"></script>
+    <script src="<?= base_url() ?>/Backend/assetsx/js/adminlte.min.js"></script>
 
     <!-- auto close alert -->
     <script>
