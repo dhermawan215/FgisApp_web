@@ -13,7 +13,7 @@
     <!-- icheck bootstrap -->
     <link rel="stylesheet" href="<?= base_url() ?>/Backend/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="<?= base_url() ?>/Backend/dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>/Backend/live/css/adminlte.min.css">
     <link rel="icon" href="<?= base_url() ?>/myfavicon.ico" type="ico" sizes="16x16">
 </head>
 
